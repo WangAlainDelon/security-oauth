@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sys-user?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: 133309
+mybatis:
+  mapper-locations: classpath:mapper/*
+  type-aliases-package: com.wx.uaaservice.domain.*
+mapper:
+  mappers: com.wx.userservice.utils.IBaseDao
+  identity: MYSQL
+server:
+  port: 8002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+security:
+  oauth2:
+    client:
+      client-id: user-service
+      client-secret: 123456
+      access-token-uri: http://localhost:8001/oauth/token
+      user-authorization-uri: http://localhost:8001/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:8001/oauth/check_token
+
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri: http://localhost:8001/users/current
+#    client:
+#      clientId: user-service
+#      clientSecret: 123456
+#      accessTokenUri: http://localhost:8001/oauth/token
+#      grant-type: client_credentials,password
+#      scope: server
+#security:
+#  oauth2:
+#    client:
+#      clientId: user-service
+#      clientSecret: 123456
+#      userAuthorizationUri: http://localhost:8001/oauth/authorize
+#      grant-type: password
+#      scope: server
+#      access-token-uri: http://localhost:8001/oauth/token
+#    resource:
+#      userInfoUri: http://localhost:8001/users/current
+#    authorization:
+#      check-token-access: http://localhost:8001/oauth/check_token
